@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.gyfjuly.mapper.IMaterialsMapper" >
+	<!---->
+	<select id="selectmaterialsCheck_0" parameterType="String" resultType="Integer">
+		SELECT COUNT(1) 
+		  FROM t_materials 
+		 WHERE u_id = #{uId}
+		   AND m_check=0
+	</select>
+	<!---->
+	<select id="selectmaterialsCheck_1" parameterType="String" resultType="Integer">
+		SELECT COUNT(1) 
+		  FROM t_materials 
+		 WHERE u_id = #{uId}
+		   AND m_check=1
+	</select>
+	<!---->
+	<select id="selectmaterialsCheck_2" parameterType="String" resultType="Integer">
+		SELECT COUNT(1) 
+		  FROM t_materials 
+		 WHERE u_id = #{uId}
+		   AND m_check=2
+	</select>
+	<!---->
+	<select id="selectmaterialsCheck_3" parameterType="String" resultType="Integer">
+		SELECT COUNT(1) 
+		  FROM t_materials 
+		 WHERE u_id = #{uId}
+		   AND m_check=3
+	</select>
+	<resultMap id="BaseMaterials" type="xyz.gyfjuly.domain.Materials">
+		<id column="m_id" property="mId"></id>
+		<id column="u_id" property="uId"></id>
+		<id column="m_materialName" property="mMaterialName"></id>
+		<id column="m_donator" property="mDonator"></id>
+		<id column="m_materialType" property="mMaterialType"></id>
+		<id column="m_checkdate" property="mCheckdate"></id>
+		<id column="m_factdate" property="mFactdate"></id>
+		<id column="m_date" property="mDate"></id>
+		<id column="m_check" property="mCheck"></id>
+	</resultMap>
+	<!---->
+	<select id="selectmaterialsDonateSuccess" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		FROM t_materials
+         WHERE u_id = #{uId}
+           AND m_check=1
+      ORDER BY m_date DESC
+         LIMIT 1
+	</select>
+
+	<!---->
+	<insert id="addmaterials" parameterType="int" >
+		INSERT INTO t_materials(u_id,m_materialName,m_donator,m_materialType,m_factdate)
+		     VALUES ()
+	</insert>
+
+	<!---->
+	<select id="getDonationmaterialsByUserId" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		  FROM t_materials
+		 WHERE u_id = #{uId}
+		   AND m_check = 3
+	</select>
+
+	<!---->
+	<select id="getmaterialsCheck_0" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		  FROM t_materials
+		 WHERE u_id = #{uId}
+		   AND m_check = 0
+	</select>
+
+	<!---->
+	<select id="getmaterialsCheck_1" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		  FROM t_materials
+		 WHERE u_id = #{uId}
+		   AND m_check = 1
+	</select>
+
+	<!---->
+	<select id="getmaterialsCheck_2" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		  FROM t_materials
+		 WHERE u_id = #{uId}
+		   AND m_check = 2
+	</select>
+
+	<!---->
+	<delete id="deleteCheck0" parameterType="String">
+		DELETE FROM t_materials
+		      WHERE m_id = #{mId}
+	</delete>
+
+	<!---->
+	<select id="getmaterialsCheck0" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		  FROM t_materials
+		 WHERE m_id = #{mId}
+		   AND m_check = 0
+	</select>
+
+	<!---->
+	<update id="editmaterialsInfo" parameterType="xyz.gyfjuly.domain.Materials" >
+		UPDATE t_materials
+		   SET m_materialName = #{mMaterialName}, m_donator = #{mDonator}, m_materialType = #{mMaterialType}, m_factdate=#{mFactdate}
+		 WHERE m_id = #{mId}
+		   AND u_id = #{uId}
+	</update>
+
+	<!--管理员-查看等待审核-->
+	<select id="adminGetmaterialsCheck_0" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		  FROM t_materials
+		 WHERE m_check = 0
+	</select>
+	<!--管理员-查看等待捐赠-->
+	<select id="adminGetmaterialsCheck_1" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		  FROM t_materials
+		 WHERE  m_check = 1
+	</select>
+	<!--管理员-查看未通过审核-->
+	<select id="adminGetmaterialsCheck_2" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		  FROM t_materials
+		 WHERE  m_check = 2
+	</select>
+	
+	<!-- 管理员审核-通过审核 -->
+	<update id="adminCheck_0Success" parameterType="String">
+		UPDATE t_materials
+		   SET m_check = 1,m_checkdate = CURDATE()
+		 WHERE m_id = #{mId}
+	</update>
+	
+	<!-- 管理员-用户已将物资捐赠给物资中心- -->
+	<update id="adminCheck_3Success" parameterType="String">
+		UPDATE t_materials
+		   SET m_check = 3,m_date = CURDATE()
+		 WHERE m_id = #{mId}
+	</update>
+	
+	<!-- 管理员审核-不通过审核 -->
+	<update id="adminCheckNo" parameterType="String">
+		UPDATE t_materials
+		   SET m_check = 2,m_checkdate = CURDATE()
+		 WHERE m_id = #{mId}
+	</update>
+	
+	<!-- 管理员-查看捐赠的物资 -->
+	<select id="getDonationmaterials" resultMap="BaseMaterials">
+		SELECT m_id,u_id,m_materialName,m_donator,m_materialType,m_checkdate,m_date,m_check,m_factdate
+		  FROM t_materials
+		 WHERE m_check = 3
+	  ORDER BY m_date DESC
+	</select>
+
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xyz.gyfjuly.mapper.IUserMapper" >
+	<select id="selectByPrimaryKey" parameterType="Integer" resultType="xyz.gyfjuly.domain.User">
+		SELECT * FROM t_user WHERE u_id = #{uId}
+	</select>
+	<resultMap id="BaseUser" type="xyz.gyfjuly.domain.User">
+		<id column="u_id" property="uId"></id>
+		<id column="u_account" property="uAccount"></id>
+		<id column="u_name" property="uName"></id>
+		<id column="u_pwd" property="uPwd"></id>
+		<id column="u_class" property="uClass"></id>
+		<id column="u_sex" property="uSex"></id>
+		<id column="u_phone" property="uPhone"></id>
+		<id column="u_email" property="uEmail"></id>
+		<id column="u_role" property="uRole"></id>
+	</resultMap>
+	<!--用户信息查询-->
+	<select id="selectUser"  resultMap="BaseUser">
+		SELECT u_id,u_account,u_name,u_pwd,u_class,u_sex,u_phone,u_email,u_role
+		  FROM t_user
+		 WHERE u_account=#{uAccount}
+		   AND u_pwd=#{uPwd}
+		   AND u_role=#{uRole}
+	</select>
+	<!--管理员-修改用户信息-->
+	<!--修改密码-->
+	<update id="editPwd"  >
+		UPDATE t_user 
+		   SET u_pwd= #{uPwd}
+		 WHERE u_id = #{uId}
+	</update>
+	<!--修改个人信息-->
+	<update id="editUserInfo" parameterType="xyz.gyfjuly.domain.User">
+		UPDATE t_user
+		<set>
+		<if test="uPwd != null">
+		   u_pwd = #{uPwd},
+		</if>
+		<if test="uName != null">
+		    u_name = #{uName},
+		</if>
+		<if test="uSex != null">
+			u_sex = #{uSex},
+		</if>
+		<if test="uPhone != null">
+			u_phone = #{uPhone},
+		</if>
+		<if test="uEmail != null">
+			u_email  = #{uEmail},
+		</if>
+		</set>
+		 where u_id = #{uId}
+	</update>
+	
+	<!-- 管理员-查询所有用户信息 -->
+	<select id="getAllUser" resultMap="BaseUser">
+		SELECT u_id ,u_account,u_name,u_class,u_sex,u_phone,u_email,u_role
+		  FROM t_user
+		 WHERE u_role = 1
+	</select>
+	
+	<!-- 管理员-删除用户 -->
+	<delete id="adminDelUserByUserId" >
+		DELETE FROM t_user
+		      WHERE u_id = #{uId}
+	</delete>
+	<!--管理员-根据id查询用户-->
+	<select id="adminGetUserById"  resultMap="BaseUser">
+		SELECT u_id,u_account,u_name,u_class,u_sex,u_phone,u_email,u_role
+		  FROM t_user
+		 WHERE u_role = 1
+		   AND u_id = #{uId}
+	</select>
+</mapper>
