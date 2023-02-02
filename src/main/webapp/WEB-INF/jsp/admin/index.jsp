@@ -217,25 +217,25 @@
 				$('#side2').attr('class','nav-top-li active');
 				$(".iframe-box").attr("src", "${pageContext.request.contextPath}/admin/userList");
 			}
-			
+			//捐赠记录
 			function donation_history() {
 				$("#sidebar ul li").removeAttr('class');
 				$('#side4').attr('class','nav-top-li active');
 				$(".iframe-box").attr("src", "${pageContext.request.contextPath}/admin/donation_history");
 			}
-			
+			//展示用户信息
 			function showUserInfo() {
 				$("#sidebar ul li").removeAttr('class');
 				$('#side6-1').attr('class','active');
 				$(".iframe-box").attr("src", "${pageContext.request.contextPath}/user/showUserInfo");
 			}
-			
+			//更新用户信息
 			function toEditUserInfo() {
 				$("#sidebar ul li").removeAttr('class');
 				$('#side6-2').attr('class','active');
 				$(".iframe-box").attr("src", "${pageContext.request.contextPath}/user/toEditUserInfo");
 			}
-			
+			//更新密码
 			function edit_pwd() {
 				$("#sidebar ul li").removeAttr('class');
 				$('#side6-3').attr('class','active');

@@ -9,7 +9,6 @@
 		<id column="u_account" property="uAccount"></id>
 		<id column="u_name" property="uName"></id>
 		<id column="u_pwd" property="uPwd"></id>
-		<id column="u_class" property="uClass"></id>
 		<id column="u_sex" property="uSex"></id>
 		<id column="u_phone" property="uPhone"></id>
 		<id column="u_email" property="uEmail"></id>
@@ -17,7 +16,7 @@
 	</resultMap>
 	<!--用户信息查询-->
 	<select id="selectUser"  resultMap="BaseUser">
-		SELECT u_id,u_account,u_name,u_pwd,u_class,u_sex,u_phone,u_email,u_role
+		SELECT u_id,u_account,u_name,u_pwd,u_sex,u_phone,u_email,u_role
 		  FROM t_user
 		 WHERE u_account=#{uAccount}
 		   AND u_pwd=#{uPwd}
@@ -40,6 +39,9 @@
 		<if test="uName != null">
 		    u_name = #{uName},
 		</if>
+		<if test="uAccount != null">
+			u_account = #{uAccount},
+		</if>
 		<if test="uSex != null">
 			u_sex = #{uSex},
 		</if>
@@ -55,7 +57,7 @@
 	
 	<!-- 管理员-查询所有用户信息 -->
 	<select id="getAllUser" resultMap="BaseUser">
-		SELECT u_id ,u_account,u_name,u_class,u_sex,u_phone,u_email,u_role
+		SELECT u_id ,u_account,u_name,u_sex,u_phone,u_email,u_role
 		  FROM t_user
 		 WHERE u_role = 1
 	</select>
@@ -67,7 +69,7 @@
 	</delete>
 	<!--管理员-根据id查询用户-->
 	<select id="adminGetUserById"  resultMap="BaseUser">
-		SELECT u_id,u_account,u_name,u_class,u_sex,u_phone,u_email,u_role
+		SELECT u_id,u_account,u_name,u_sex,u_phone,u_email,u_role
 		  FROM t_user
 		 WHERE u_role = 1
 		   AND u_id = #{uId}

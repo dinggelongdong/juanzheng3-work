@@ -22,11 +22,6 @@ public class User {
     private String uPwd;
 
     /**
-     *°à¼¶
-     */
-    private String uClass;
-
-    /**
      *ÐÔ±ð
      */
     private String uSex;
@@ -78,14 +73,6 @@ public class User {
         this.uPwd = uPwd;
     }
 
-    public String getuClass() {
-        return uClass;
-    }
-
-    public void setuClass(String uClass) {
-        this.uClass = uClass;
-    }
-
     public String getuSex() {
         return uSex;
     }
@@ -125,7 +112,6 @@ public class User {
                 ", uAccount='" + uAccount + '\'' +
                 ", uName='" + uName + '\'' +
                 ", uPwd='" + uPwd + '\'' +
-                ", uClass='" + uClass + '\'' +
                 ", uSex='" + uSex + '\'' +
                 ", uPhone='" + uPhone + '\'' +
                 ", uEmail='" + uEmail + '\'' +

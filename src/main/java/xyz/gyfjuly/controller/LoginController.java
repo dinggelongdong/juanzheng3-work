@@ -28,7 +28,7 @@ public class LoginController {
 	 * 用户登录：成功跳转到首页；失败跳转到登录页面
 	 * @author gyf
 	 */
-	@RequestMapping("user_index")
+	@RequestMapping(value = "user_index",produces = "text/plain;charset=utf-8")
 	public String user_index(User user, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) throws IOException, ServletException {
 
@@ -42,7 +42,7 @@ public class LoginController {
 			}
 		}
 		else {
-			request.setAttribute("msg", "ACCOUNT OR PASSWORD ERROR !");
+			request.setAttribute("msg", "账号或密码错误!");
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
 		}

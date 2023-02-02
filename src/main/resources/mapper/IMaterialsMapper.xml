@@ -51,9 +51,9 @@
 	</select>
 
 	<!---->
-	<insert id="addmaterials" parameterType="int" >
-		INSERT INTO t_materials(u_id,m_materialName,m_donator,m_materialType,m_factdate)
-		     VALUES ()
+	<insert id="addmaterials" parameterType="xyz.gyfjuly.domain.Materials" >
+		INSERT INTO t_materials(u_id,m_materialName,m_donator,m_materialType,m_check,m_factdate)
+		     VALUES (#{uId},#{mMaterialName},#{mDonator},#{mMaterialType},0,#{mFactdate})
 	</insert>
 
 	<!---->
@@ -129,14 +129,14 @@
 		 WHERE  m_check = 2
 	</select>
 	
-	<!-- 管理员审核-通过审核 -->
+	<!-- 管理员审核-通过审核 更新审核时间-->
 	<update id="adminCheck_0Success" parameterType="String">
 		UPDATE t_materials
 		   SET m_check = 1,m_checkdate = CURDATE()
 		 WHERE m_id = #{mId}
 	</update>
 	
-	<!-- 管理员-用户已将物资捐赠给物资中心- -->
+	<!-- 管理员-用户已将物资捐赠给物资中心 更新捐赠时间- -->
 	<update id="adminCheck_3Success" parameterType="String">
 		UPDATE t_materials
 		   SET m_check = 3,m_date = CURDATE()

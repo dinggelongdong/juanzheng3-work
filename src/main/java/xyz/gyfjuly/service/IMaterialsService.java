@@ -16,7 +16,7 @@ public interface IMaterialsService {
 	/**/
 	Materials selectMaterialsDonateSuccess(String uId);
 	/**/
-	int addMaterials(Materials Materials);
+	int addMaterials(Materials materials);
 	/**/
 	List<Materials> getDonationMaterialsByUserId(String uId);
 	/**/

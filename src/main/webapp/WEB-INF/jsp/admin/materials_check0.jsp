@@ -115,6 +115,7 @@
 			// 审核不通过 m_check=2.
 			function adminCheckNo(m_id) {
 				if (confirm('确定不通过该物资的捐赠请求吗？')) {
+					//ajax请求
 					$.ajax({
 						type : "post",
 						url : "adminCheckNo",

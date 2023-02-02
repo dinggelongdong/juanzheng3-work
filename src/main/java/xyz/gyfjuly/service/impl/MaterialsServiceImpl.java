@@ -41,8 +41,8 @@ public class MaterialsServiceImpl implements IMaterialsService {
 	}
 
 	@Override
-	public int addMaterials(Materials Materials) {
-		return MaterialsDao.addmaterials(Materials);
+	public int addMaterials(Materials materials) {
+		return MaterialsDao.addmaterials(materials);
 	}
 
 	@Override

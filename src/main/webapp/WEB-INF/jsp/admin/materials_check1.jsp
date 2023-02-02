@@ -34,6 +34,7 @@
 												<th>物资类型</th>
 												<th>生产日期</th>
 												<th>审核日期</th>
+												<th>操作</th>
 											</tr>
 											</thead>
 											<tbody>
@@ -91,10 +92,10 @@
 						dataType : 'json',
 						success : function(data){ 
 							if (data.msg == 'success') {
-								alert("审核已通过！");
+								alert("审核通过！");
 								window.location.href="toMaterialCheck_1";
 							} else {
-								alert("审核操作失败!");
+								alert("审核失败!");
 							}
 						},
 						error : function() {

@@ -34,6 +34,12 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" > 账号 </label>
+										<div class="col-sm-9">
+											<input type="text" id="u_account" name="u_account" value="${userinfo.uAccount }" placeholder="请填写账号" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" > 性别 </label>
 										<div class="col-sm-9">
 											<input type="radio" name="u_sex" value="男" ${userinfo.uSex eq "男" ? "checked" : "" } />男&nbsp;&nbsp;
@@ -75,12 +81,18 @@
 			function editUserInfo() {
 				var u_id = $('#u_id').val();
 				var u_name = $('#u_name').val();
+				var u_account = $('#u_account').val();
 				var u_sex = $('input[name="u_sex"]:checked').val();
 				var u_phone = $('#u_phone').val();
 				var u_email = $('#u_email').val();
 				
 				if (u_name == null || u_name == '') {
 					alert('用户名不能为空');
+					return false;
+				}
+
+				if (u_account == null || u_account == '') {
+					alert('账号不能为空');
 					return false;
 				}
 				
@@ -97,7 +109,7 @@
 				$.ajax({
 					url : "editUserInfo",
 					type : "POST",
-					data : {uId:u_id,uName:u_name,uSex:u_sex,uPhone:u_phone,uEmail:u_email},
+					data : {uId:u_id,uName:u_name,uAccount:u_account,uSex:u_sex,uPhone:u_phone,uEmail:u_email},
 					dataType : 'json',
 					success : function(data){ 
 						if (data.msg == 'success') {

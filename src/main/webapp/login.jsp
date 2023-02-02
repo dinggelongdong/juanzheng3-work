@@ -16,12 +16,12 @@
 			<br />
 			<br />
 			<br />
-			<h1 style="text-align: center;font-size: 40px;color: red;">物资捐赠管理系统</h1>
+			<h1 style="text-align: center;font-size: 40px;color: whitesmoke;">物资捐赠管理系统</h1>
 			<div class="zhuce_kong login_kuang">
 				<div class="zc">
 					<div class="bj_bai" >
 						<h3>登录</h3>
-						<span style="color: red" >${msg }</span>
+						<span style="color: red" type="text">${msg }</span>
 						<form action="user_index" method="post">
 							<input name="uAccount" id="uAccount" type="text" class="kuang_txt" placeholder="请输入登录账号">
 							<input name="uPwd" id="uPwd" type="password" class="kuang_txt" placeholder="请输入登录密码"><br />

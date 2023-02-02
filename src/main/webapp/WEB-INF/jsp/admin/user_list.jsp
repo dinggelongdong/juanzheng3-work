@@ -34,7 +34,6 @@
 													<th>性别</th>
 													<th>手机号</th>
 													<th>Email</th>
-													<th>班级</th>
 													<th>角色</th>
 													<th>操作</th>
 												</tr>
@@ -53,7 +52,6 @@
 																<td>${user.uSex }</td>
 																<td>${user.uPhone }</td>
 																<td>${user.uEmail }</td>
-																<td>${user.uClass }</td>
 																<td>${user.uRole == 1 ? "普通用户" : "管理员" }</td>
 																<td>
 																	<div class="hidden-sm hidden-xs btn-group">

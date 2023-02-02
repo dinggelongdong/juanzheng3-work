@@ -34,6 +34,12 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" > 账号 </label>
+										<div class="col-sm-9">
+											<input type="text" id="u_account" name="u_account" readonly="readonly" value="${user.uAccount }" class="col-xs-10 col-sm-5" />
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" > 性别 </label>
 										<div class="col-sm-9">
 											<input type="radio" name="u_sex" readonly="readonly" value="男" ${user.uSex eq "男" ? "checked" : "" } />男&nbsp;&nbsp;

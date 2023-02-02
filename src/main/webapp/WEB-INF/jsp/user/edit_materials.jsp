@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -43,7 +44,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" > 生产日期 </label>
 										<div class="col-sm-9">
-											<input type="date" id="m_factdate" name="m_factdate" placeholder="请选择生产日期" value="${materials.mFactdate }" class="col-xs-10 col-sm-5" />
+											<input type="date" id="m_factdate" name="m_factdate" placeholder="请选择生产日期" value="<fmt:formatDate value="${materials.mFactdate}" pattern="yyyy-MM-dd"/> " class="col-xs-10 col-sm-5" />
 										</div>
 									</div>
 									<div class="clearfix form-actions">
